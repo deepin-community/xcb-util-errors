@@ -1,0 +1,35 @@
+From: Uli Schlachter <psychon@znc.in>
+Date: Fri, 8 Dec 2023 17:43:53 +0100
+Subject: Fix tests
+
+The tests also use some non-existing events to check that these are
+handled correctly. Then came XI 2.4 and introduced several new events,
+which broke the test.
+
+Fix this by updating the test accordingly.
+
+This means tests will now fail when using an older version of xcb-proto.
+If you are affected by this, either do not run tests, or build against a
+newer version of xcb-proto.
+
+Signed-off-by: Uli Schlachter <psychon@znc.in>
+Applied-Upstream: fad9c433f54e7c4e8531e3c41161d15631213aae
+Forwarded: not-needed
+---
+ tests/test.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/tests/test.c b/tests/test.c
+index 2fa40ce..761b855 100644
+--- a/tests/test.c
++++ b/tests/test.c
+@@ -303,7 +303,8 @@ static int test_xinput(xcb_connection_t *c, xcb_errors_context_t *ctx)
+ 	err |= check_xge_event(ctx, reply->major_opcode, 0, "Unknown (0)", "Input");
+ 	err |= check_xge_event(ctx, reply->major_opcode, 1, "DeviceChanged", "Input");
+ 	err |= check_xge_event(ctx, reply->major_opcode, 26, "BarrierLeave", "Input");
+-	err |= check_xge_event(ctx, reply->major_opcode, 27, NULL, "Input");
++	err |= check_xge_event(ctx, reply->major_opcode, 32, "GestureSwipeEnd", "Input");
++	err |= check_xge_event(ctx, reply->major_opcode, 33, NULL, "Input");
+ 	err |= check_xge_event(ctx, reply->major_opcode, 1337, NULL, "Input");
+ 	err |= check_xge_event(ctx, reply->major_opcode, 0xffff, NULL, "Input");
+ 	err |= check_minor(ctx, reply->major_opcode, 0, "Unknown (0)");

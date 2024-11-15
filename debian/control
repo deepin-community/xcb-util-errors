@@ -1,15 +1,51 @@
-Source: template-repository
-Section: unknown
+Source: xcb-util-errors
+Section: libs
 Priority: optional
-Maintainer: Tsic404 <liuheng@deepin.org>
-Build-Depends: debhelper (>= 11)
-Standards-Version: 4.1.3
-Homepage: https://github.com/deepin-community/template-repository
-#Vcs-Browser: https://salsa.debian.org/debian/deepin-community-template-repository
-#Vcs-Git: https://salsa.debian.org/debian/deepin-community-template-repository.git
+Maintainer: Debian X Strike Force <debian-x@lists.debian.org>
+Uploaders:
+ Boyuan Yang <byang@debian.org>,
+Build-Depends:
+ debhelper-compat (= 13),
+ pkgconf,
+ python3:any,
+ libxcb1-dev,
+ xcb-proto,
+ xutils-dev,
+Standards-Version: 4.7.0
+Rules-Requires-Root: no
+Homepage: https://gitlab.freedesktop.org/xorg/lib/libxcb-errors
+Vcs-Git: https://salsa.debian.org/debian/xcb-util-errors.git
+Vcs-Browser: https://salsa.debian.org/debian/xcb-util-errors
+Description: Helper library for printing information about X11 errors
+ xcb-util-errors is a utility library that gives human readable names
+ to error codes and event codes and also to major and minor numbers.
+ .
+ The necessary information is drawn from xcb-proto's protocol descriptions.
+ .
+ This library is especially useful when working with extensions and is mostly
+ useful for debugging.
 
-Package: template-repository
+Package: libxcb-errors-dev
+Section: libdevel
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Multi-Arch: same
+Depends:
+ libxcb-errors0 (= ${binary:Version}),
+ ${misc:Depends},
+Description: ${source:Synopsis} (dev)
+ ${source:Extended-Description}
+ .
+ This package contains the header and development files needed to build
+ software using xcb-util-errors library.
+
+Package: libxcb-errors0
+Architecture: any
+Multi-Arch: same
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends},
+Description: ${source:Synopsis} (shared library)
+ ${source:Extended-Description}
+ .
+ This package contains the shared library files needed for software using
+ xcb-util-errors library.
