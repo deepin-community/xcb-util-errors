@@ -1,0 +1,4 @@
+usr/include/xcb/
+usr/lib/*/libxcb-errors.a
+usr/lib/*/libxcb-errors.so
+usr/lib/*/pkgconfig/*
