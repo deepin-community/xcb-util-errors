@@ -1,9 +1,3 @@
-xcb-util-errors (1.0.1-4) unstable; urgency=medium
-
-  * Rebuild with LTO enabled (dpkg vendor feature optimize/lto).
-
- -- tunaichao <tunaichao@uniontech.com>  Mon, 14 Sep 2026 09:17:27 +0800
-
 xcb-util-errors (1.0.1-3) unstable; urgency=medium
 
   * debian/control: Mark dev package as Multi-Arch: same.
